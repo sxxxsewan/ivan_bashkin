@@ -3,7 +3,7 @@ import random
 from datetime import datetime, timedelta, timezone
 from decimal import Decimal
 
-from sqlalchemy import delete, insert
+from sqlalchemy import delete, insert, select
 
 from app.database import Base, SessionLocal, engine
 from app.models import Book, BookCopy, Loan, Reader, User
@@ -36,6 +36,12 @@ def seed_data(dataset: str) -> None:
                 for index in range(1, counts["readers"] + 1)
             ],
         )
+        reader_ids = {
+            ticket_number: reader_id
+            for reader_id, ticket_number in db.execute(
+                select(Reader.id, Reader.ticket_number)
+            )
+        }
         db.execute(
             insert(Book),
             [
@@ -48,22 +54,34 @@ def seed_data(dataset: str) -> None:
                 for index in range(1, counts["books"] + 1)
             ],
         )
+        book_ids = {
+            isbn: book_id
+            for book_id, isbn in db.execute(select(Book.id, Book.isbn))
+        }
         copy_rows = []
         for index in range(1, counts["copies"] + 1):
             first_loan_is_active = index <= counts["loans"] and index % 4 == 0
+            book_index = ((index - 1) % counts["books"]) + 1
             copy_rows.append(
                 {
-                    "book_id": ((index - 1) % counts["books"]) + 1,
+                    "book_id": book_ids[f"978{book_index:010d}"],
                     "inventory_number": f"INV-{index:07d}",
                     "status": "issued" if first_loan_is_active else "available",
                 }
             )
         db.execute(insert(BookCopy), copy_rows)
+        copy_ids = {
+            inventory_number: copy_id
+            for copy_id, inventory_number in db.execute(
+                select(BookCopy.id, BookCopy.inventory_number)
+            )
+        }
 
         loan_rows = []
         active_limit = min(counts["copies"], counts["loans"])
         for index in range(1, counts["loans"] + 1):
-            copy_id = ((index - 1) % counts["copies"]) + 1
+            copy_index = ((index - 1) % counts["copies"]) + 1
+            reader_index = ((index - 1) % counts["readers"]) + 1
             is_active = index <= active_limit and index % 4 == 0
             issue_age = (
                 40
@@ -76,8 +94,8 @@ def seed_data(dataset: str) -> None:
             overdue_days = max(0, (return_date - due_date).days) if return_date else 0
             loan_rows.append(
                 {
-                    "reader_id": ((index - 1) % counts["readers"]) + 1,
-                    "copy_id": copy_id,
+                    "reader_id": reader_ids[f"T-{reader_index:06d}"],
+                    "copy_id": copy_ids[f"INV-{copy_index:07d}"],
                     "issue_date": issue_date,
                     "due_date": due_date,
                     "return_date": return_date,

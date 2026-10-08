@@ -16,7 +16,9 @@ python -m venv .venv
 # Linux/macOS: source .venv/bin/activate
 # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
+# Linux/macOS/WSL:
 cp .env.example .env
+# Windows PowerShell: Copy-Item .env.example .env
 docker compose up -d
 alembic upgrade head
 python seed.py --type=small
@@ -25,10 +27,10 @@ uvicorn app.main:app --reload
 Для большого набора данных используйте `python seed.py --type=large`. Тестовая учетная запись после заполнения: `admin` / `admin123`.
 
 ## Переменные окружения
-| Переменная | Значение по умолчанию | Назначение |
+| Переменная | Значение / источник | Назначение |
 |---|---|---|
 | `DATABASE_URL` | `postgresql://app:changeme@localhost:5432/ivan_bashkin` | Подключение к PostgreSQL |
-| `SECRET_KEY` | `replace-this-with-a-long-random-secret` | Подпись JWT; задайте собственное случайное значение |
+| `SECRET_KEY` | В `.env.example`: `replace-this-with-a-long-random-secret`; без переменной: `development-only-secret-key-change-me` | Подпись JWT; задайте собственное случайное значение |
 
 ## Проверка работоспособности и тесты
 Из корневой директории проекта после установки зависимостей запустите `pytest`. Файл `pytest.ini` автоматически настраивает поиск модуля `app`, поэтому `PYTHONPATH` указывать не нужно. Интерактивная документация API доступна по адресу `/docs`.
@@ -45,4 +47,4 @@ uvicorn app.main:app --reload
 | `POST /api/v1/loans/{id}/return` | ID выдачи | `200`: дата возврата, дни просрочки, штраф | `401`, `404`, `409`, `422` |
 | `GET /api/v1/summary` | Нет | `200`: экземпляры на руках, просрочки, топ-10 книг | `401` |
 
-Производительность можно измерить после запуска сервиса командой `python benchmark.py --requests 30 --warmup 5`; скрипт печатает медиану, p95 и максимум времени ответа.
+После запуска сервиса измерьте производительность командой `python benchmark.py --requests 30 --warmup 5`. Скрипт отдельно выводит медиану и p95 для авторизации (`POST /api/v1/auth/login`) и получения списка выдач (`GET /api/v1/loans`). Для входа используется тестовая учетная запись `admin` / `admin123`, создаваемая командой `seed.py`.
