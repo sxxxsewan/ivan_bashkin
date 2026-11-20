@@ -29,6 +29,8 @@ def issue_book(db: Session, reader_id: int, copy_id: int, due_date: datetime | N
     if overdue is not None:
         raise HTTPException(status_code=409, detail="Reader has overdue loans")
 
+    if due_date is not None and due_date.tzinfo is None:
+        due_date = due_date.replace(tzinfo=timezone.utc)
     loan = Loan(
         reader_id=reader_id,
         copy_id=copy_id,

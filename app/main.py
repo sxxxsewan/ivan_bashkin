@@ -1,13 +1,16 @@
 from datetime import datetime, timezone
+from pathlib import Path
+from time import perf_counter
 from typing import Annotated, Literal
 
-from fastapi import APIRouter, Depends, FastAPI, HTTPException, Query
+from fastapi import APIRouter, Depends, FastAPI, HTTPException, Query, Request
+from fastapi.responses import FileResponse
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy import func, select
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 
-from app.database import get_db
-from app.models import Loan, Reader, User
+from app.database import get_db, request_sql_metrics
+from app.models import BookCopy, Loan, Reader, User
 from app.schemas import (
     LoanCreate,
     LoanDetail,
@@ -24,6 +27,34 @@ from app.services import get_summary, issue_book, return_book
 app = FastAPI(title="Ivan Bashkin Library API", version="1.0.0")
 router = APIRouter(prefix="/api/v1")
 DbSession = Annotated[Session, Depends(get_db)]
+
+
+@app.middleware("http")
+async def add_request_timing(request: Request, call_next):
+    metrics: dict[str, float | int | list[float]] = {
+        "db_seconds": 0.0,
+        "db_queries": 0,
+        "query_starts": [],
+    }
+    token = request_sql_metrics.set(metrics)
+    started = perf_counter()
+    try:
+        response = await call_next(request)
+    finally:
+        request_sql_metrics.reset(token)
+    elapsed = perf_counter() - started
+    db_seconds = float(metrics["db_seconds"])
+    response.headers["Server-Timing"] = (
+        f"db;dur={db_seconds * 1000:.3f}, "
+        f"app;dur={max(0.0, elapsed - db_seconds) * 1000:.3f}"
+    )
+    response.headers["X-DB-Query-Count"] = str(metrics["db_queries"])
+    return response
+
+
+@app.get("/", include_in_schema=False)
+def library_client() -> FileResponse:
+    return FileResponse(Path(__file__).parent / "static" / "index.html")
 
 
 @router.post("/auth/login", response_model=TokenResponse)
@@ -74,7 +105,11 @@ def list_loans(
     dependencies=[Depends(get_current_user)],
 )
 def get_loan(loan_id: int, db: DbSession) -> Loan:
-    loan = db.get(Loan, loan_id)
+    loan = db.scalar(
+        select(Loan)
+        .options(joinedload(Loan.reader), joinedload(Loan.copy).joinedload(BookCopy.book))
+        .where(Loan.id == loan_id)
+    )
     if loan is None:
         raise HTTPException(status_code=404, detail="Loan not found")
     return loan

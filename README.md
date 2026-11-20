@@ -1,50 +1,73 @@
-# Ivan Bashkin Library API
+# Ivan Bashkin — библиотечные выдачи
 
 ## Назначение
-Сервис предоставляет REST API для учета читателей, книжного фонда и выдач в библиотеке. Он поддерживает авторизацию, оформление и возврат экземпляров, фильтрацию истории и сводные показатели.
+Приложение предназначено для учета читателей, книг, экземпляров и выдач в библиотеке. Оно предоставляет защищенный API для регистрации возвратов и штрафов, а также веб-интерфейс для просмотра выдач и сводных показателей.
 
 ## Требования
-- Python 3.11 или новее
-- PostgreSQL 16
-- Docker и Docker Compose
+- Python 3.11 или новее (версия, указанная в проекте; совместимость следует подтвердить запуском).
+- PostgreSQL 16.
+- Docker и Docker Compose.
 
 ## Установка и запуск
+Выполняйте команды из терминала в родительской папке, где требуется клонировать репозиторий:
 ```bash
-git clone <repository-url> ivan_bashkin
+git clone https://github.com/sxxxsewan/ivan_bashkin.git
 cd ivan_bashkin
 python -m venv .venv
-# Linux/macOS: source .venv/bin/activate
-# Windows: .venv\Scripts\activate
+source .venv/bin/activate
 pip install -r requirements.txt
-# Linux/macOS/WSL:
 cp .env.example .env
-# Windows PowerShell: Copy-Item .env.example .env
 docker compose up -d
 alembic upgrade head
 python seed.py --type=small
 uvicorn app.main:app --reload
 ```
-Для большого набора данных используйте `python seed.py --type=large`. Тестовая учетная запись после заполнения: `admin` / `admin123`.
+Для рабочего набора вместо малого используйте `python seed.py --type=large`. Seed удаляет прежние данные и заполняет базу заново; учебная учетная запись `admin` / `admin123` создается каждым запуском.
 
 ## Переменные окружения
-| Переменная | Значение / источник | Назначение |
-|---|---|---|
-| `DATABASE_URL` | `postgresql://app:changeme@localhost:5432/ivan_bashkin` | Подключение к PostgreSQL |
-| `SECRET_KEY` | В `.env.example`: `replace-this-with-a-long-random-secret`; без переменной: `development-only-secret-key-change-me` | Подпись JWT; задайте собственное случайное значение |
+Файл `.env.example` содержит только демонстрационные значения. Перед развертыванием задайте собственный случайный `SECRET_KEY`; строка `changeme` для этого не подходит.
 
-## Проверка работоспособности и тесты
-Из корневой директории проекта после установки зависимостей запустите `pytest`. Файл `pytest.ini` автоматически настраивает поиск модуля `app`, поэтому `PYTHONPATH` указывать не нужно. Интерактивная документация API доступна по адресу `/docs`.
+| Переменная | Пример | Назначение |
+|---|---|---|
+| `DATABASE_URL` | `postgresql+psycopg2://app:changeme@localhost:5432/ivan_bashkin` | Подключение SQLAlchemy к PostgreSQL; имя базы содержит `ivan_bashkin`. |
+| `SECRET_KEY` | `changeme` | Ключ подписи JWT; замените длинным случайным значением. |
+
+Compose создает PostgreSQL 16 с локальными параметрами из `docker-compose.yml`. Примерные пароль и JWT-ключ предназначены только для локального учебного запуска. В исходниках оставлен development-only fallback `development-only-secret-key-change-me`; за пределами локальной разработки обязательно задайте `SECRET_KEY`.
+
+## Проверка работоспособности
+- Веб-интерфейс: `http://localhost:8000/`. Три экрана доступны после входа: список с фильтрами и страницами, карточка выдачи, сводка.
+- Учетная запись после заполнения базы: `admin` / `admin123`.
+- Тесты из корня: `pytest`.
+- Замеры (после запуска API и заполнения указанного набора): `python benchmark.py --dataset small --requests 30 --warmup 5`; для рабочего набора передайте `--dataset large`. Скрипт добавляет строки в `benchmark_results.csv`, прогрев в статистику не включается. Перед каждым отдельным замером повторно запустите соответствующий `seed.py`: benchmark подготавливает выдачи для POST-операций и оставляет часть новых выдач активными.
+- `parameter_bytes` в таблице и CSV — байты query/form/JSON-параметров и ID в пути, без фиксированной части URL.
+- Числа производительности до фактического запуска не собраны: `TODO: заполнить после запуска benchmark.py`.
+- Документация API также доступна по адресу `http://localhost:8000/docs`; Swagger UI не заменяет веб-интерфейс.
 
 ## Программный интерфейс
-Все пути, кроме входа, требуют заголовок `Authorization: Bearer <token>`.
+Все операции, кроме входа, требуют `Authorization: Bearer <access_token>`. Срок действия JWT — 60 минут. `422` означает некорректный формат или значение параметра, `401` — отсутствующие/неверные учетные данные либо токен.
 
-| Метод/путь | Параметры | Ответ | Ошибки |
+| Метод и путь | Параметры | Успешный ответ | Возможные ошибки |
 |---|---|---|---|
-| `POST /api/v1/auth/login` | Form (`application/x-www-form-urlencoded`): `username`, `password` | `200`: JWT `access_token` | `401`, `422` |
-| `GET /api/v1/loans` | `page` (>=1), `size` (1..100), `status` (`active`/`returned`/`overdue`), `reader_id` | `200`: `items`, `page`, `size`, `total` | `401`, `422` |
-| `GET /api/v1/loans/{id}` | ID выдачи | `200`: выдача, читатель, экземпляр и книга | `401`, `404`, `422` |
-| `POST /api/v1/loans` | JSON: `reader_id`, `copy_id`, опционально `due_date` | `201`: созданная выдача | `401`, `404`, `409`, `422` |
-| `POST /api/v1/loans/{id}/return` | ID выдачи | `200`: дата возврата, дни просрочки, штраф | `401`, `404`, `409`, `422` |
-| `GET /api/v1/summary` | Нет | `200`: экземпляры на руках, просрочки, топ-10 книг | `401` |
+| `POST /api/v1/auth/login` | Форма `application/x-www-form-urlencoded`: обязательные `username`, `password`. | `200`: объект `access_token`, `token_type` (`bearer`). | `401` неверная пара логин/пароль; `422` отсутствующие поля формы. |
+| `GET /api/v1/loans` | Query: `page` (по умолчанию 1, >=1), `size` (по умолчанию 20, 1..100), `status` (необязательно: `active`, `returned`, `overdue`), `reader_id` (необязательно, >0). `active` — не возвращенные, `overdue` — не возвращенные со сроком раньше текущего времени. | `200`: `{items, page, size, total}`; элементы содержат `id`, `reader_id`, `copy_id`, `issue_date`, `due_date`, `return_date`, `penalty_amount`. `total` рассчитан с теми же фильтрами, что и страница. | `401` нет токена; `422` некорректный query-параметр/статус. |
+| `GET /api/v1/loans/{loan_id}` | Целочисленный ID выдачи в пути. | `200`: поля выдачи (`id`, `reader_id`, `copy_id`, даты, `penalty_amount`), `reader` (`id`, `full_name`, `ticket_number`), `copy` (`id`, `inventory_number`, `status`, `book`), `book` (`id`, `title`, `author`, `isbn`, `category`). | `401` нет токена; `404` выдача не найдена; `422` ID не является целым числом. |
+| `POST /api/v1/loans` | JSON: обязательные положительные `reader_id`, `copy_id`; необязательный `due_date` (datetime, по умолчанию 14 дней от момента выдачи). | `201`: созданная выдача с полями `id`, `reader_id`, `copy_id`, `issue_date`, `due_date`, `return_date`, `penalty_amount`. | `401` нет токена; `404` читатель или экземпляр не найдены; `409` экземпляр занят или у читателя есть активная просрочка; `422` неверное тело/поля. |
+| `POST /api/v1/loans/{loan_id}/return` | Целочисленный ID выдачи в пути; тело не требуется. | `200`: `{loan_id, return_date, overdue_days, penalty_amount}`. Просрочка — `max(0, floor((return_date - due_date) / 24 часа))`, штраф — `100.00` за полный день просрочки. | `401` нет токена; `404` выдача не найдена; `409` выдача уже возвращена; `422` некорректный ID. |
+| `GET /api/v1/summary` | Нет параметров. | `200`: `issued_copies` (экземпляры на руках), `overdue_loans` (активные просроченные выдачи), `popular_books` (до 10 книг с `book_id`, `title`, `author`, `loan_count`). | `401` нет токена. |
 
-После запуска сервиса измерьте производительность командой `python benchmark.py --requests 30 --warmup 5`. Скрипт отдельно выводит медиану и p95 для авторизации (`POST /api/v1/auth/login`) и получения списка выдач (`GET /api/v1/loans`). Для входа используется тестовая учетная запись `admin` / `admin123`, создаваемая командой `seed.py`.
+## Условия испытания
+Заполните фактическими сведениями после выполнения замеров; результаты не указаны заранее.
+
+| Параметр | Фактическое значение |
+|---|---|
+| Машина (процессор, память) | TODO |
+| Операционная система | TODO |
+| Версия PostgreSQL | TODO |
+| Версия Python | TODO |
+| Учетная запись | TODO |
+| Число повторов | TODO |
+| Число прогревочных запросов | TODO |
+| Клиент и сервер на одной машине? | TODO |
+
+## Разложение времени
+API добавляет в ответы заголовки `Server-Timing` (`db` — сумма времени SQL-запросов, `app` — оставшееся время обработки) и `X-DB-Query-Count`; `benchmark.py` сохраняет медианные значения времени ответа, БД, приложения и количества запросов для операций `GET /api/v1/loans` и `POST /api/v1/loans` (а также остальных операций контракта) в консоль и CSV.

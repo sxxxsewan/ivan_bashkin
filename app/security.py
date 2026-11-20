@@ -13,6 +13,7 @@ from app.database import get_db
 from app.models import User
 
 
+# Local-development fallback only; deployments should set SECRET_KEY explicitly.
 SECRET_KEY = os.getenv("SECRET_KEY", "development-only-secret-key-change-me")
 ALGORITHM = "HS256"
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/v1/auth/login")

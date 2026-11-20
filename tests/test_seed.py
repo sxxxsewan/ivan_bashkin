@@ -45,6 +45,13 @@ def seed_database(monkeypatch):
 
 def test_seed_can_run_repeatedly_and_keeps_generated_ids_linked(seed_database):
     seed.seed_data("small")
+    with seed_database() as db:
+        first_reader_ids = set(db.scalars(select(Reader.id)))
+        first_book_ids = set(db.scalars(select(Book.id)))
+        first_copy_ids = set(db.scalars(select(BookCopy.id)))
+        first_loan_ids = set(db.scalars(select(Loan.id)))
+        first_admin_hash = db.scalar(select(User.password_hash).where(User.username == "admin"))
+
     seed.seed_data("small")
 
     with seed_database() as db:
@@ -58,5 +65,10 @@ def test_seed_can_run_repeatedly_and_keeps_generated_ids_linked(seed_database):
         assert all(copy.book_id in book_ids for copy in copies)
         assert all(loan.reader_id in reader_ids for loan in loans)
         assert all(loan.copy_id in copy_ids for loan in loans)
+        assert reader_ids == first_reader_ids
+        assert book_ids == first_book_ids
+        assert copy_ids == first_copy_ids
+        assert {loan.id for loan in loans} == first_loan_ids
         assert admin is not None
+        assert admin.password_hash == first_admin_hash
         assert verify_password("admin123", admin.password_hash)

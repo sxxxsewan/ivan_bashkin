@@ -3,11 +3,11 @@ import random
 from datetime import datetime, timedelta, timezone
 from decimal import Decimal
 
-from sqlalchemy import delete, insert, select
+from sqlalchemy import delete, insert, select, text
 
 from app.database import Base, SessionLocal, engine
 from app.models import Book, BookCopy, Loan, Reader, User
-from app.security import hash_password
+from app.security import hash_password, verify_password
 
 
 DATASETS = {
@@ -15,24 +15,52 @@ DATASETS = {
     "large": {"readers": 3000, "books": 10000, "copies": 30000, "loans": 75000},
 }
 CATEGORIES = ["Fiction", "Science", "History", "Technology", "Art", "Biography"]
+READER_CREATED_AT = datetime(2000, 1, 1, tzinfo=timezone.utc)
 
 
 def seed_data(dataset: str) -> None:
     counts = DATASETS[dataset]
     randomizer = random.Random(1729)
     Base.metadata.create_all(engine)
+    # One anchor keeps every generated date consistent within this run.
     now = datetime.now(timezone.utc).replace(microsecond=0)
     with SessionLocal.begin() as db:
-        for model in (Loan, BookCopy, Reader, Book, User):
-            db.execute(delete(model))
+        admin_hash = db.scalar(
+            select(User.password_hash).where(User.username == "admin")
+        )
+        if admin_hash is None or not verify_password("admin123", admin_hash):
+            admin_hash = hash_password("admin123")
+        if db.bind.dialect.name == "postgresql":
+            db.execute(
+                text(
+                    "TRUNCATE TABLE loans, book_copies, readers, books, users "
+                    "RESTART IDENTITY CASCADE"
+                )
+            )
+        else:
+            for model in (Loan, BookCopy, Reader, Book, User):
+                db.execute(delete(model))
+            if db.bind.dialect.name == "sqlite":
+                has_sequence = db.scalar(
+                    text(
+                        "SELECT 1 FROM sqlite_master "
+                        "WHERE type = 'table' AND name = 'sqlite_sequence'"
+                    )
+                )
+                if has_sequence:
+                    db.execute(text("DELETE FROM sqlite_sequence"))
         db.execute(
             insert(User),
-            [{"username": "admin", "password_hash": hash_password("admin123"), "role": "admin"}],
+            [{"username": "admin", "password_hash": admin_hash, "role": "admin"}],
         )
         db.execute(
             insert(Reader),
             [
-                {"full_name": f"Reader {index:05d}", "ticket_number": f"T-{index:06d}"}
+                {
+                    "full_name": f"Reader {index:05d}",
+                    "ticket_number": f"T-{index:06d}",
+                    "created_at": READER_CREATED_AT,
+                }
                 for index in range(1, counts["readers"] + 1)
             ],
         )

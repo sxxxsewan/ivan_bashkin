@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Библиотека — выдачи</title>
+</head>
+<body>
+  <main>
+    <h1>Библиотека</h1>
+    <section id="login-screen">
+      <h2>Вход</h2>
+      <form id="login-form">
+        <label>Логин <input name="username" required autocomplete="username"></label>
+        <label>Пароль <input name="password" type="password" required autocomplete="current-password"></label>
+        <button type="submit">Войти</button>
+      </form>
+    </section>
+    <p id="message" role="status"></p>
+
+    <section id="app-screen" hidden>
+      <nav>
+        <button type="button" data-screen="loans">Выдачи</button>
+        <button type="button" data-screen="summary">Сводка</button>
+        <button type="button" id="logout-button">Выйти</button>
+      </nav>
+      <section id="loans-screen">
+        <h2>Список выдач</h2>
+        <form id="filter-form">
+          <label>Статус
+            <select name="status">
+              <option value="">Все</option>
+              <option value="active">На руках</option>
+              <option value="returned">Возвращённые</option>
+              <option value="overdue">Просроченные</option>
+            </select>
+          </label>
+          <label>ID читателя <input name="reader_id" type="number" min="1"></label>
+          <button type="submit">Применить</button>
+        </form>
+        <table>
+          <thead><tr><th>ID</th><th>Читатель</th><th>Экземпляр</th><th>Выдана</th><th>Срок</th><th>Возврат</th></tr></thead>
+          <tbody id="loans-body"></tbody>
+        </table>
+        <button type="button" id="previous-page">Назад</button>
+        <span id="page-info"></span>
+        <button type="button" id="next-page">Вперёд</button>
+      </section>
+
+      <section id="detail-screen" hidden>
+        <button type="button" id="back-to-list">К списку</button>
+        <h2>Карточка выдачи</h2>
+        <div id="loan-detail"></div>
+      </section>
+
+      <section id="summary-screen" hidden>
+        <h2>Сводка</h2>
+        <p>Экземпляров на руках: <strong id="issued-count"></strong></p>
+        <p>Просроченных выдач: <strong id="overdue-count"></strong></p>
+        <h3>Популярные книги</h3>
+        <ol id="popular-books"></ol>
+      </section>
+    </section>
+  </main>
+  <script>
+    let accessToken = null;
+    let currentPage = 1;
+    const pageSize = 20;
+    const loginScreen = document.querySelector("#login-screen");
+    const appScreen = document.querySelector("#app-screen");
+    const message = document.querySelector("#message");
+
+    function escapeHtml(value) {
+      return String(value ?? "").replace(/[&<>"']/g, (character) => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+      })[character]);
+    }
+
+    function showMessage(text) {
+      message.textContent = text;
+    }
+
+    function showScreen(name) {
+      document.querySelector("#loans-screen").hidden = name !== "loans";
+      document.querySelector("#detail-screen").hidden = name !== "detail";
+      document.querySelector("#summary-screen").hidden = name !== "summary";
+      if (name === "loans") loadLoans();
+      if (name === "summary") loadSummary();
+    }
+
+    async function api(path, options = {}) {
+      const headers = new Headers(options.headers || {});
+      if (accessToken) headers.set("Authorization", `Bearer ${accessToken}`);
+      const response = await fetch(path, {...options, headers});
+      if (response.status === 401) {
+        accessToken = null;
+        appScreen.hidden = true;
+        loginScreen.hidden = false;
+      }
+      const body = await response.json();
+      if (!response.ok) throw new Error(body.detail || `Ошибка HTTP ${response.status}`);
+      return body;
+    }
+
+    document.querySelector("#login-form").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const form = new FormData(event.currentTarget);
+      const body = new URLSearchParams({
+        username: form.get("username"),
+        password: form.get("password")
+      });
+      try {
+        const result = await api("/api/v1/auth/login", {
+          method: "POST",
+          headers: {"Content-Type": "application/x-www-form-urlencoded"},
+          body
+        });
+        accessToken = result.access_token;
+        loginScreen.hidden = true;
+        appScreen.hidden = false;
+        showMessage("");
+        showScreen("loans");
+      } catch (error) {
+        showMessage(error.message);
+      }
+    });
+
+    async function loadLoans() {
+      const filters = new FormData(document.querySelector("#filter-form"));
+      const params = new URLSearchParams({page: currentPage, size: pageSize});
+      if (filters.get("status")) params.set("status", filters.get("status"));
+      if (filters.get("reader_id")) params.set("reader_id", filters.get("reader_id"));
+      try {
+        const result = await api(`/api/v1/loans?${params}`);
+        document.querySelector("#loans-body").innerHTML = result.items.map((loan) => `
+          <tr>
+            <td><button type="button" data-loan-id="${loan.id}">${loan.id}</button></td>
+            <td>${loan.reader_id}</td><td>${loan.copy_id}</td>
+            <td>${escapeHtml(loan.issue_date)}</td><td>${escapeHtml(loan.due_date)}</td>
+            <td>${escapeHtml(loan.return_date || "На руках")}</td>
+          </tr>`).join("");
+        document.querySelectorAll("[data-loan-id]").forEach((button) => {
+          button.addEventListener("click", () => loadDetail(button.dataset.loanId));
+        });
+        const pages = Math.max(1, Math.ceil(result.total / result.size));
+        document.querySelector("#page-info").textContent =
+          `Страница ${result.page} из ${pages}; всего: ${result.total}`;
+        document.querySelector("#previous-page").disabled = currentPage <= 1;
+        document.querySelector("#next-page").disabled = currentPage >= pages;
+        showMessage("");
+      } catch (error) {
+        showMessage(error.message);
+      }
+    }
+
+    async function loadDetail(id) {
+      try {
+        const loan = await api(`/api/v1/loans/${encodeURIComponent(id)}`);
+        const copy = loan.copy;
+        const book = copy.book;
+        document.querySelector("#loan-detail").innerHTML = `
+          <dl>
+            <dt>Выдача</dt><dd>${loan.id}</dd>
+            <dt>Читатель</dt><dd>${escapeHtml(loan.reader.full_name)} (${escapeHtml(loan.reader.ticket_number)})</dd>
+            <dt>Экземпляр</dt><dd>${escapeHtml(copy.inventory_number)} (${escapeHtml(copy.status)})</dd>
+            <dt>Книга</dt><dd>${escapeHtml(book.title)} — ${escapeHtml(book.author)}, ISBN ${escapeHtml(book.isbn)}</dd>
+            <dt>Дата выдачи</dt><dd>${escapeHtml(loan.issue_date)}</dd>
+            <dt>Срок возврата</dt><dd>${escapeHtml(loan.due_date)}</dd>
+            <dt>Дата возврата</dt><dd>${escapeHtml(loan.return_date || "На руках")}</dd>
+            <dt>Штраф</dt><dd>${escapeHtml(loan.penalty_amount)}</dd>
+          </dl>`;
+        showScreen("detail");
+      } catch (error) {
+        showMessage(error.message);
+      }
+    }
+
+    async function loadSummary() {
+      try {
+        const summary = await api("/api/v1/summary");
+        document.querySelector("#issued-count").textContent = summary.issued_copies;
+        document.querySelector("#overdue-count").textContent = summary.overdue_loans;
+        document.querySelector("#popular-books").innerHTML = summary.popular_books.map((book) =>
+          `<li>${escapeHtml(book.title)} — ${escapeHtml(book.author)} (${book.loan_count})</li>`
+        ).join("");
+        showMessage("");
+      } catch (error) {
+        showMessage(error.message);
+      }
+    }
+
+    document.querySelector("#filter-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      currentPage = 1;
+      loadLoans();
+    });
+    document.querySelector("#previous-page").addEventListener("click", () => {
+      currentPage = Math.max(1, currentPage - 1);
+      loadLoans();
+    });
+    document.querySelector("#next-page").addEventListener("click", () => {
+      currentPage += 1;
+      loadLoans();
+    });
+    document.querySelector("#back-to-list").addEventListener("click", () => showScreen("loans"));
+    document.querySelectorAll("[data-screen]").forEach((button) => {
+      button.addEventListener("click", () => showScreen(button.dataset.screen));
+    });
+    document.querySelector("#logout-button").addEventListener("click", () => {
+      accessToken = null;
+      appScreen.hidden = true;
+      loginScreen.hidden = false;
+      document.querySelector("#login-form").reset();
+      showMessage("");
+    });
+  </script>
+</body>
+</html>
