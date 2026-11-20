@@ -9,9 +9,23 @@ from sqlalchemy.orm import DeclarativeBase, Session, sessionmaker
 
 
 load_dotenv()
-DATABASE_URL = os.getenv(
-    "DATABASE_URL",
-    "postgresql+psycopg2://app:changeme@localhost:5432/ivan_bashkin",
+
+
+def normalize_database_url(url: str) -> str:
+    if url.startswith("postgres://"):
+        return url.replace("postgres://", "postgresql+psycopg2://", 1)
+    if url.startswith("postgresql://"):
+        return url.replace("postgresql://", "postgresql+psycopg2://", 1)
+    if url.startswith("postgresql+psycopg://"):
+        return url.replace("postgresql+psycopg://", "postgresql+psycopg2://", 1)
+    return url
+
+
+DATABASE_URL = normalize_database_url(
+    os.getenv(
+        "DATABASE_URL",
+        "postgresql+psycopg2://app:changeme@localhost:5432/ivan_bashkin",
+    )
 )
 connect_args = {"check_same_thread": False} if DATABASE_URL.startswith("sqlite") else {}
 engine = create_engine(DATABASE_URL, echo=False, connect_args=connect_args)
