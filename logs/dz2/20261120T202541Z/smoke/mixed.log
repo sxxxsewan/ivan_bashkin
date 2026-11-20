@@ -1,0 +1,76 @@
+
+         /\      Grafana   /‾‾/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   ‾‾\ 
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/ 
+
+
+     execution: local
+        script: load/library.js
+        output: -
+
+     scenarios: (100.00%) 1 scenario, 20 max VUs, 33s max duration (incl. graceful stop):
+              * mixed: 1.00 iterations/s for 3s (maxVUs: 10-20, gracefulStop: 30s)
+
+
+running (01.0s), 00/10 VUs, 1 complete and 0 interrupted iterations
+mixed   [  28% ] 00/10 VUs  0.8s/3s  1.00 iters/s
+
+running (02.0s), 00/10 VUs, 2 complete and 0 interrupted iterations
+mixed   [  61% ] 00/10 VUs  1.8s/3s  1.00 iters/s
+
+running (03.0s), 00/10 VUs, 3 complete and 0 interrupted iterations
+mixed   [  95% ] 00/10 VUs  2.8s/3s  1.00 iters/s
+
+
+  █ THRESHOLDS 
+
+    http_req_duration
+    ✓ 'p(95)<500' p(95)=131.2ms
+
+    http_req_failed
+    ✓ 'rate<0.01' rate=0.00%
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 1       0.317203/s
+    checks_succeeded...: 100.00% 1 out of 1
+    checks_failed......: 0.00%   0 out of 1
+
+    ✓ login succeeded
+
+    CUSTOM
+    app_time_ms....................: avg=7.83ms    min=4.86ms    med=6.89ms    max=11.73ms   p(90)=10.76ms   p(95)=11.24ms  
+    db_query_count.................: 9     2.854826/s
+    db_time_ms.....................: avg=13.26ms   min=10.78ms   med=13.31ms   max=15.69ms   p(90)=15.21ms   p(95)=15.45ms  
+    db_time_share_pct..............: avg=63.812384 min=57.226719 med=60.979749 max=73.230685 p(90)=70.780497 p(95)=72.005591
+    op_list_app_ms.................: avg=7.83ms    min=4.86ms    med=6.89ms    max=11.73ms   p(90)=10.76ms   p(95)=11.24ms  
+    op_list_db_ms..................: avg=13.26ms   min=10.78ms   med=13.31ms   max=15.69ms   p(90)=15.21ms   p(95)=15.45ms  
+    op_list_db_queries.............: 9     2.854826/s
+    op_list_db_share_pct...........: avg=63.812384 min=57.226719 med=60.979749 max=73.230685 p(90)=70.780497 p(95)=72.005591
+    op_list_http_ms................: avg=22.09ms   min=18.64ms   med=19.17ms   max=28.45ms   p(90)=26.59ms   p(95)=27.52ms  
+    op_list_requests...............: 3     0.951609/s
+
+    HTTP
+    http_req_duration..............: avg=53.9ms    min=18.64ms   med=23.81ms   max=149.33ms  p(90)=113.07ms  p(95)=131.2ms  
+      { expected_response:true }...: avg=53.9ms    min=18.64ms   med=23.81ms   max=149.33ms  p(90)=113.07ms  p(95)=131.2ms  
+    http_req_failed................: 0.00% 0 out of 4
+    http_reqs......................: 4     1.268812/s
+
+    EXECUTION
+    iteration_duration.............: avg=23.22ms   min=19.54ms   med=20.04ms   max=30.08ms   p(90)=28.07ms   p(95)=29.08ms  
+    iterations.....................: 3     0.951609/s
+    vus............................: 0     min=0      max=0 
+    vus_max........................: 10    min=10     max=10
+
+    NETWORK
+    data_received..................: 11 kB 3.5 kB/s
+    data_sent......................: 956 B 303 B/s
+
+
+
+
+running (03.2s), 00/10 VUs, 3 complete and 0 interrupted iterations
+mixed ✓ [ 100% ] 00/10 VUs  3s  1.00 iters/s

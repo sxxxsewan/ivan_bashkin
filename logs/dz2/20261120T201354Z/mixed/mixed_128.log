@@ -1,0 +1,151 @@
+
+         /\      Grafana   /‾‾/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   ‾‾\ 
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/ 
+
+
+     execution: local
+        script: load/library.js
+        output: -
+
+     scenarios: (100.00%) 1 scenario, 512 max VUs, 1m0s max duration (incl. graceful stop):
+              * mixed: 128.00 iterations/s for 30s (maxVUs: 128-512, gracefulStop: 30s)
+
+
+running (0m01.0s), 007/128 VUs, 105 complete and 0 interrupted iterations
+mixed   [   3% ] 007/128 VUs  00.9s/30s  128.00 iters/s
+
+running (0m02.0s), 000/128 VUs, 240 complete and 0 interrupted iterations
+mixed   [   6% ] 000/128 VUs  01.9s/30s  128.00 iters/s
+
+running (0m03.0s), 005/128 VUs, 363 complete and 0 interrupted iterations
+mixed   [  10% ] 005/128 VUs  02.9s/30s  128.00 iters/s
+
+running (0m04.0s), 008/128 VUs, 488 complete and 0 interrupted iterations
+mixed   [  13% ] 008/128 VUs  03.9s/30s  128.00 iters/s
+
+running (0m05.0s), 002/128 VUs, 622 complete and 0 interrupted iterations
+mixed   [  16% ] 002/128 VUs  04.9s/30s  128.00 iters/s
+
+running (0m06.0s), 002/128 VUs, 750 complete and 0 interrupted iterations
+mixed   [  20% ] 002/128 VUs  05.9s/30s  128.00 iters/s
+
+running (0m07.0s), 013/128 VUs, 867 complete and 0 interrupted iterations
+mixed   [  23% ] 013/128 VUs  06.9s/30s  128.00 iters/s
+
+running (0m08.0s), 012/128 VUs, 996 complete and 0 interrupted iterations
+mixed   [  26% ] 012/128 VUs  07.9s/30s  128.00 iters/s
+
+running (0m09.0s), 001/128 VUs, 1135 complete and 0 interrupted iterations
+mixed   [  30% ] 001/128 VUs  08.9s/30s  128.00 iters/s
+
+running (0m10.0s), 006/128 VUs, 1258 complete and 0 interrupted iterations
+mixed   [  33% ] 006/128 VUs  09.9s/30s  128.00 iters/s
+
+running (0m11.0s), 007/128 VUs, 1385 complete and 0 interrupted iterations
+mixed   [  36% ] 007/128 VUs  10.9s/30s  128.00 iters/s
+
+running (0m12.0s), 003/128 VUs, 1517 complete and 0 interrupted iterations
+mixed   [  40% ] 003/128 VUs  11.9s/30s  128.00 iters/s
+
+running (0m13.0s), 008/128 VUs, 1640 complete and 0 interrupted iterations
+mixed   [  43% ] 008/128 VUs  12.9s/30s  128.00 iters/s
+
+running (0m14.0s), 011/128 VUs, 1765 complete and 0 interrupted iterations
+mixed   [  46% ] 011/128 VUs  13.9s/30s  128.00 iters/s
+
+running (0m15.0s), 010/128 VUs, 1894 complete and 0 interrupted iterations
+mixed   [  50% ] 010/128 VUs  14.9s/30s  128.00 iters/s
+
+running (0m16.0s), 001/128 VUs, 2031 complete and 0 interrupted iterations
+mixed   [  53% ] 001/128 VUs  15.9s/30s  128.00 iters/s
+
+running (0m17.0s), 005/128 VUs, 2155 complete and 0 interrupted iterations
+mixed   [  56% ] 005/128 VUs  16.9s/30s  128.00 iters/s
+
+running (0m18.0s), 010/128 VUs, 2278 complete and 0 interrupted iterations
+mixed   [  60% ] 010/128 VUs  17.9s/30s  128.00 iters/s
+
+running (0m19.0s), 005/128 VUs, 2411 complete and 0 interrupted iterations
+mixed   [  63% ] 005/128 VUs  18.9s/30s  128.00 iters/s
+
+running (0m20.0s), 001/128 VUs, 2543 complete and 0 interrupted iterations
+mixed   [  66% ] 001/128 VUs  19.9s/30s  128.00 iters/s
+
+running (0m21.0s), 010/128 VUs, 2662 complete and 0 interrupted iterations
+mixed   [  70% ] 010/128 VUs  20.9s/30s  128.00 iters/s
+
+running (0m22.0s), 013/128 VUs, 2787 complete and 0 interrupted iterations
+mixed   [  73% ] 013/128 VUs  21.9s/30s  128.00 iters/s
+
+running (0m23.0s), 008/128 VUs, 2920 complete and 0 interrupted iterations
+mixed   [  76% ] 008/128 VUs  22.9s/30s  128.00 iters/s
+
+running (0m24.0s), 004/128 VUs, 3052 complete and 0 interrupted iterations
+mixed   [  80% ] 004/128 VUs  23.9s/30s  128.00 iters/s
+
+running (0m25.0s), 007/128 VUs, 3177 complete and 0 interrupted iterations
+mixed   [  83% ] 007/128 VUs  24.9s/30s  128.00 iters/s
+
+running (0m26.0s), 003/128 VUs, 3309 complete and 0 interrupted iterations
+mixed   [  86% ] 003/128 VUs  25.9s/30s  128.00 iters/s
+
+running (0m27.0s), 001/128 VUs, 3439 complete and 0 interrupted iterations
+mixed   [  90% ] 001/128 VUs  26.9s/30s  128.00 iters/s
+
+running (0m28.0s), 007/128 VUs, 3561 complete and 0 interrupted iterations
+mixed   [  93% ] 007/128 VUs  27.9s/30s  128.00 iters/s
+
+running (0m29.0s), 012/128 VUs, 3685 complete and 0 interrupted iterations
+mixed   [  96% ] 012/128 VUs  28.9s/30s  128.00 iters/s
+
+running (0m30.0s), 007/128 VUs, 3817 complete and 0 interrupted iterations
+mixed   [ 100% ] 007/128 VUs  29.9s/30s  128.00 iters/s
+
+
+  █ THRESHOLDS 
+
+    http_req_duration
+    ✓ 'p(95)<500' p(95)=155.17ms
+
+    http_req_failed
+    ✓ 'rate<0.01' rate=0.00%
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 1       0.033206/s
+    checks_succeeded...: 100.00% 1 out of 1
+    checks_failed......: 0.00%   0 out of 1
+
+    ✓ login succeeded
+
+    CUSTOM
+    app_time_ms....................: avg=21.52ms   min=2.92ms  med=16.94ms   max=167.39ms p(90)=45.59ms   p(95)=54.67ms  
+    db_query_count.................: 15497  514.599299/s
+    db_time_ms.....................: avg=23.35ms   min=1.36ms  med=17.59ms   max=185.51ms p(90)=35.05ms   p(95)=67.36ms  
+    db_time_share_pct..............: avg=46.813502 min=4.87098 med=44.114981 max=95.82907 p(90)=69.723376 p(95)=77.233888
+
+    HTTP
+    http_req_duration..............: avg=48.87ms   min=5ms     med=40.44ms   max=243.36ms p(90)=91.41ms   p(95)=155.17ms 
+      { expected_response:true }...: avg=48.87ms   min=5ms     med=40.44ms   max=243.36ms p(90)=91.41ms   p(95)=155.17ms 
+    http_req_failed................: 0.00%  0 out of 3842
+    http_reqs......................: 3842   127.578919/s
+
+    EXECUTION
+    iteration_duration.............: avg=49.37ms   min=5.47ms  med=40.95ms   max=243.76ms p(90)=91.81ms   p(95)=155.67ms 
+    iterations.....................: 3841   127.545713/s
+    vus............................: 7      min=0         max=13 
+    vus_max........................: 128    min=128       max=128
+
+    NETWORK
+    data_received..................: 5.9 MB 197 kB/s
+    data_sent......................: 992 kB 33 kB/s
+
+
+
+
+running (0m30.1s), 000/128 VUs, 3841 complete and 0 interrupted iterations
+mixed ✓ [ 100% ] 000/128 VUs  30s  128.00 iters/s

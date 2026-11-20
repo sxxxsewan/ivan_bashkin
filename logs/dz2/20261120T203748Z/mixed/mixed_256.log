@@ -1,0 +1,310 @@
+
+         /\      Grafana   /‾‾/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   ‾‾\ 
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/ 
+
+
+     execution: local
+        script: load/library.js
+        output: -
+
+     scenarios: (100.00%) 1 scenario, 1024 max VUs, 1m0s max duration (incl. graceful stop):
+              * mixed: 256.00 iterations/s for 30s (maxVUs: 256-1024, gracefulStop: 30s)
+
+
+running (0m00.9s), 0128/0256 VUs, 78 complete and 0 interrupted iterations
+mixed   [   3% ] 0128/0256 VUs  00.8s/30s  256.00 iters/s
+
+running (0m01.9s), 0317/0318 VUs, 81 complete and 0 interrupted iterations
+mixed   [   6% ] 0317/0318 VUs  01.8s/30s  256.00 iters/s
+
+running (0m02.9s), 0444/0444 VUs, 81 complete and 0 interrupted iterations
+mixed   [   9% ] 0444/0444 VUs  02.8s/30s  256.00 iters/s
+
+running (0m03.9s), 0572/0572 VUs, 81 complete and 0 interrupted iterations
+mixed   [  13% ] 0572/0572 VUs  03.8s/30s  256.00 iters/s
+
+running (0m04.9s), 0698/0698 VUs, 81 complete and 0 interrupted iterations
+mixed   [  16% ] 0698/0698 VUs  04.8s/30s  256.00 iters/s
+
+running (0m05.9s), 0826/0826 VUs, 81 complete and 0 interrupted iterations
+mixed   [  19% ] 0826/0826 VUs  05.8s/30s  256.00 iters/s
+
+running (0m06.9s), 0951/0951 VUs, 81 complete and 0 interrupted iterations
+mixed   [  23% ] 0951/0951 VUs  06.8s/30s  256.00 iters/s
+time="2026-11-20T17:43:47-03:00" level=warning msg="Insufficient VUs, reached 1024 active VUs and cannot initialize more" executor=constant-arrival-rate scenario=mixed
+
+running (0m07.9s), 1024/1024 VUs, 81 complete and 0 interrupted iterations
+mixed   [  26% ] 1024/1024 VUs  07.8s/30s  256.00 iters/s
+
+running (0m08.9s), 1024/1024 VUs, 81 complete and 0 interrupted iterations
+mixed   [  29% ] 1024/1024 VUs  08.8s/30s  256.00 iters/s
+
+running (0m09.9s), 1024/1024 VUs, 81 complete and 0 interrupted iterations
+mixed   [  33% ] 1024/1024 VUs  09.8s/30s  256.00 iters/s
+
+running (0m10.9s), 1024/1024 VUs, 81 complete and 0 interrupted iterations
+mixed   [  36% ] 1024/1024 VUs  10.8s/30s  256.00 iters/s
+
+running (0m11.9s), 1024/1024 VUs, 81 complete and 0 interrupted iterations
+mixed   [  39% ] 1024/1024 VUs  11.8s/30s  256.00 iters/s
+
+running (0m12.9s), 1024/1024 VUs, 81 complete and 0 interrupted iterations
+mixed   [  43% ] 1024/1024 VUs  12.8s/30s  256.00 iters/s
+
+running (0m13.9s), 1024/1024 VUs, 81 complete and 0 interrupted iterations
+mixed   [  46% ] 1024/1024 VUs  13.8s/30s  256.00 iters/s
+
+running (0m14.9s), 1024/1024 VUs, 81 complete and 0 interrupted iterations
+mixed   [  49% ] 1024/1024 VUs  14.8s/30s  256.00 iters/s
+
+running (0m15.9s), 1024/1024 VUs, 81 complete and 0 interrupted iterations
+mixed   [  53% ] 1024/1024 VUs  15.8s/30s  256.00 iters/s
+
+running (0m16.9s), 1024/1024 VUs, 81 complete and 0 interrupted iterations
+mixed   [  56% ] 1024/1024 VUs  16.8s/30s  256.00 iters/s
+
+running (0m17.9s), 1024/1024 VUs, 81 complete and 0 interrupted iterations
+mixed   [  59% ] 1024/1024 VUs  17.8s/30s  256.00 iters/s
+
+running (0m18.9s), 1024/1024 VUs, 81 complete and 0 interrupted iterations
+mixed   [  63% ] 1024/1024 VUs  18.8s/30s  256.00 iters/s
+
+running (0m19.9s), 1024/1024 VUs, 81 complete and 0 interrupted iterations
+mixed   [  66% ] 1024/1024 VUs  19.8s/30s  256.00 iters/s
+
+running (0m20.9s), 1024/1024 VUs, 81 complete and 0 interrupted iterations
+mixed   [  69% ] 1024/1024 VUs  20.8s/30s  256.00 iters/s
+
+running (0m21.9s), 1024/1024 VUs, 81 complete and 0 interrupted iterations
+mixed   [  73% ] 1024/1024 VUs  21.8s/30s  256.00 iters/s
+
+running (0m22.9s), 1024/1024 VUs, 81 complete and 0 interrupted iterations
+mixed   [  76% ] 1024/1024 VUs  22.8s/30s  256.00 iters/s
+
+running (0m23.9s), 1024/1024 VUs, 81 complete and 0 interrupted iterations
+mixed   [  79% ] 1024/1024 VUs  23.8s/30s  256.00 iters/s
+
+running (0m24.9s), 1024/1024 VUs, 81 complete and 0 interrupted iterations
+mixed   [  83% ] 1024/1024 VUs  24.8s/30s  256.00 iters/s
+
+running (0m25.9s), 1024/1024 VUs, 81 complete and 0 interrupted iterations
+mixed   [  86% ] 1024/1024 VUs  25.8s/30s  256.00 iters/s
+
+running (0m26.9s), 1024/1024 VUs, 81 complete and 0 interrupted iterations
+mixed   [  89% ] 1024/1024 VUs  26.8s/30s  256.00 iters/s
+
+running (0m27.9s), 1024/1024 VUs, 81 complete and 0 interrupted iterations
+mixed   [  93% ] 1024/1024 VUs  27.8s/30s  256.00 iters/s
+
+running (0m28.9s), 1024/1024 VUs, 81 complete and 0 interrupted iterations
+mixed   [  96% ] 1024/1024 VUs  28.8s/30s  256.00 iters/s
+
+running (0m29.9s), 1024/1024 VUs, 81 complete and 0 interrupted iterations
+mixed   [  99% ] 1024/1024 VUs  29.8s/30s  256.00 iters/s
+time="2026-11-20T17:44:10-03:00" level=error msg="Error: API timing headers are missing or invalid\n\tat captureTiming (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:122:11(41))\n\tat runMixed (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:161:25(48))\n\tat default (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:218:11(36))\n" executor=constant-arrival-rate scenario=mixed source=stacktrace
+time="2026-11-20T17:44:10-03:00" level=error msg="Error: API timing headers are missing or invalid\n\tat captureTiming (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:122:11(41))\n\tat runMixed (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:161:25(48))\n\tat default (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:218:11(36))\n" executor=constant-arrival-rate scenario=mixed source=stacktrace
+time="2026-11-20T17:44:10-03:00" level=error msg="Error: API timing headers are missing or invalid\n\tat captureTiming (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:122:11(41))\n\tat runMixed (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:161:25(48))\n\tat default (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:218:11(36))\n" executor=constant-arrival-rate scenario=mixed source=stacktrace
+time="2026-11-20T17:44:10-03:00" level=error msg="Error: API timing headers are missing or invalid\n\tat captureTiming (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:122:11(41))\n\tat runMixed (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:161:25(48))\n\tat default (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:218:11(36))\n" executor=constant-arrival-rate scenario=mixed source=stacktrace
+time="2026-11-20T17:44:10-03:00" level=error msg="Error: API timing headers are missing or invalid\n\tat captureTiming (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:122:11(41))\n\tat runMixed (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:161:25(48))\n\tat default (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:218:11(36))\n" executor=constant-arrival-rate scenario=mixed source=stacktrace
+time="2026-11-20T17:44:10-03:00" level=error msg="Error: API timing headers are missing or invalid\n\tat captureTiming (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:122:11(41))\n\tat runMixed (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:161:25(48))\n\tat default (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:218:11(36))\n" executor=constant-arrival-rate scenario=mixed source=stacktrace
+time="2026-11-20T17:44:10-03:00" level=error msg="Error: API timing headers are missing or invalid\n\tat captureTiming (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:122:11(41))\n\tat runMixed (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:168:25(80))\n\tat default (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:218:11(36))\n" executor=constant-arrival-rate scenario=mixed source=stacktrace
+time="2026-11-20T17:44:10-03:00" level=error msg="Error: API timing headers are missing or invalid\n\tat captureTiming (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:122:11(41))\n\tat runMixed (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:168:25(80))\n\tat default (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:218:11(36))\n" executor=constant-arrival-rate scenario=mixed source=stacktrace
+time="2026-11-20T17:44:10-03:00" level=error msg="Error: API timing headers are missing or invalid\n\tat captureTiming (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:122:11(41))\n\tat runMixed (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:168:25(80))\n\tat default (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:218:11(36))\n" executor=constant-arrival-rate scenario=mixed source=stacktrace
+time="2026-11-20T17:44:10-03:00" level=error msg="Error: API timing headers are missing or invalid\n\tat captureTiming (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:122:11(41))\n\tat runMixed (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:168:25(80))\n\tat default (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:218:11(36))\n" executor=constant-arrival-rate scenario=mixed source=stacktrace
+time="2026-11-20T17:44:10-03:00" level=error msg="Error: API timing headers are missing or invalid\n\tat captureTiming (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:122:11(41))\n\tat runMixed (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:168:25(80))\n\tat default (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:218:11(36))\n" executor=constant-arrival-rate scenario=mixed source=stacktrace
+time="2026-11-20T17:44:10-03:00" level=error msg="Error: API timing headers are missing or invalid\n\tat captureTiming (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:122:11(41))\n\tat runMixed (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:168:25(80))\n\tat default (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:218:11(36))\n" executor=constant-arrival-rate scenario=mixed source=stacktrace
+time="2026-11-20T17:44:10-03:00" level=error msg="Error: API timing headers are missing or invalid\n\tat captureTiming (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:122:11(41))\n\tat runMixed (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:168:25(80))\n\tat default (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:218:11(36))\n" executor=constant-arrival-rate scenario=mixed source=stacktrace
+time="2026-11-20T17:44:10-03:00" level=error msg="Error: API timing headers are missing or invalid\n\tat captureTiming (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:122:11(41))\n\tat runMixed (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:179:25(155))\n\tat default (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:218:11(36))\n" executor=constant-arrival-rate scenario=mixed source=stacktrace
+time="2026-11-20T17:44:10-03:00" level=error msg="Error: API timing headers are missing or invalid\n\tat captureTiming (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:122:11(41))\n\tat runMixed (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:179:25(155))\n\tat default (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:218:11(36))\n" executor=constant-arrival-rate scenario=mixed source=stacktrace
+time="2026-11-20T17:44:10-03:00" level=error msg="Error: API timing headers are missing or invalid\n\tat captureTiming (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:122:11(41))\n\tat runMixed (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:179:25(155))\n\tat default (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:218:11(36))\n" executor=constant-arrival-rate scenario=mixed source=stacktrace
+time="2026-11-20T17:44:10-03:00" level=error msg="Error: API timing headers are missing or invalid\n\tat captureTiming (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:122:11(41))\n\tat runMixed (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:179:25(155))\n\tat default (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:218:11(36))\n" executor=constant-arrival-rate scenario=mixed source=stacktrace
+time="2026-11-20T17:44:10-03:00" level=error msg="Error: API timing headers are missing or invalid\n\tat captureTiming (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:122:11(41))\n\tat runMixed (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:179:25(155))\n\tat default (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:218:11(36))\n" executor=constant-arrival-rate scenario=mixed source=stacktrace
+time="2026-11-20T17:44:10-03:00" level=error msg="Error: API timing headers are missing or invalid\n\tat captureTiming (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:122:11(41))\n\tat runMixed (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:179:25(155))\n\tat default (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:218:11(36))\n" executor=constant-arrival-rate scenario=mixed source=stacktrace
+time="2026-11-20T17:44:10-03:00" level=error msg="Error: API timing headers are missing or invalid\n\tat captureTiming (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:122:11(41))\n\tat runMixed (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:179:25(155))\n\tat default (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:218:11(36))\n" executor=constant-arrival-rate scenario=mixed source=stacktrace
+time="2026-11-20T17:44:10-03:00" level=error msg="Error: API timing headers are missing or invalid\n\tat captureTiming (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:122:11(41))\n\tat runMixed (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:179:25(155))\n\tat default (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:218:11(36))\n" executor=constant-arrival-rate scenario=mixed source=stacktrace
+time="2026-11-20T17:44:11-03:00" level=error msg="Error: API timing headers are missing or invalid\n\tat captureTiming (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:122:11(41))\n\tat runMixed (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:179:25(155))\n\tat default (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:218:11(36))\n" executor=constant-arrival-rate scenario=mixed source=stacktrace
+time="2026-11-20T17:44:11-03:00" level=error msg="Error: API timing headers are missing or invalid\n\tat captureTiming (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:122:11(41))\n\tat runMixed (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:179:25(155))\n\tat default (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:218:11(36))\n" executor=constant-arrival-rate scenario=mixed source=stacktrace
+
+running (0m30.9s), 0996/1024 VUs, 109 complete and 0 interrupted iterations
+mixed ↓ [ 100% ] 1024/1024 VUs  30s  256.00 iters/s
+time="2026-11-20T17:44:11-03:00" level=error msg="Error: API timing headers are missing or invalid\n\tat captureTiming (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:122:11(41))\n\tat runMixed (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:179:25(155))\n\tat default (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:218:11(36))\n" executor=constant-arrival-rate scenario=mixed source=stacktrace
+time="2026-11-20T17:44:11-03:00" level=error msg="Error: API timing headers are missing or invalid\n\tat captureTiming (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:122:11(41))\n\tat runMixed (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:179:25(155))\n\tat default (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:218:11(36))\n" executor=constant-arrival-rate scenario=mixed source=stacktrace
+time="2026-11-20T17:44:11-03:00" level=error msg="Error: API timing headers are missing or invalid\n\tat captureTiming (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:122:11(41))\n\tat runMixed (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:179:25(155))\n\tat default (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:218:11(36))\n" executor=constant-arrival-rate scenario=mixed source=stacktrace
+time="2026-11-20T17:44:11-03:00" level=error msg="Error: API timing headers are missing or invalid\n\tat captureTiming (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:122:11(41))\n\tat runMixed (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:179:25(155))\n\tat default (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:218:11(36))\n" executor=constant-arrival-rate scenario=mixed source=stacktrace
+time="2026-11-20T17:44:11-03:00" level=error msg="Error: API timing headers are missing or invalid\n\tat captureTiming (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:122:11(41))\n\tat runMixed (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:197:25(212))\n\tat default (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:218:11(36))\n" executor=constant-arrival-rate scenario=mixed source=stacktrace
+time="2026-11-20T17:44:11-03:00" level=error msg="Error: API timing headers are missing or invalid\n\tat captureTiming (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:122:11(41))\n\tat runMixed (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:179:25(155))\n\tat default (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:218:11(36))\n" executor=constant-arrival-rate scenario=mixed source=stacktrace
+time="2026-11-20T17:44:11-03:00" level=error msg="Error: API timing headers are missing or invalid\n\tat captureTiming (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:122:11(41))\n\tat runMixed (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:197:25(212))\n\tat default (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:218:11(36))\n" executor=constant-arrival-rate scenario=mixed source=stacktrace
+time="2026-11-20T17:44:11-03:00" level=error msg="Error: API timing headers are missing or invalid\n\tat captureTiming (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:122:11(41))\n\tat runMixed (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:179:25(155))\n\tat default (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:218:11(36))\n" executor=constant-arrival-rate scenario=mixed source=stacktrace
+time="2026-11-20T17:44:11-03:00" level=error msg="Error: API timing headers are missing or invalid\n\tat captureTiming (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:122:11(41))\n\tat runMixed (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:197:25(212))\n\tat default (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:218:11(36))\n" executor=constant-arrival-rate scenario=mixed source=stacktrace
+time="2026-11-20T17:44:11-03:00" level=error msg="Error: API timing headers are missing or invalid\n\tat captureTiming (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:122:11(41))\n\tat runMixed (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:197:25(212))\n\tat default (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:218:11(36))\n" executor=constant-arrival-rate scenario=mixed source=stacktrace
+time="2026-11-20T17:44:11-03:00" level=error msg="Error: API timing headers are missing or invalid\n\tat captureTiming (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:122:11(41))\n\tat runMixed (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:179:25(155))\n\tat default (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:218:11(36))\n" executor=constant-arrival-rate scenario=mixed source=stacktrace
+time="2026-11-20T17:44:11-03:00" level=error msg="Error: API timing headers are missing or invalid\n\tat captureTiming (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:122:11(41))\n\tat runMixed (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:197:25(212))\n\tat default (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:218:11(36))\n" executor=constant-arrival-rate scenario=mixed source=stacktrace
+time="2026-11-20T17:44:11-03:00" level=error msg="Error: API timing headers are missing or invalid\n\tat captureTiming (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:122:11(41))\n\tat runMixed (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:197:25(212))\n\tat default (file:///home/ewvn/MISIS/OKSP/kr1/ivan_bashkin/load/library.js:218:11(36))\n" executor=constant-arrival-rate scenario=mixed source=stacktrace
+
+running (0m31.9s), 0976/1024 VUs, 129 complete and 0 interrupted iterations
+mixed ↓ [ 100% ] 1024/1024 VUs  30s  256.00 iters/s
+
+running (0m32.9s), 0976/1024 VUs, 129 complete and 0 interrupted iterations
+mixed ↓ [ 100% ] 1024/1024 VUs  30s  256.00 iters/s
+
+running (0m33.9s), 0976/1024 VUs, 129 complete and 0 interrupted iterations
+mixed ↓ [ 100% ] 1024/1024 VUs  30s  256.00 iters/s
+
+running (0m34.9s), 0976/1024 VUs, 129 complete and 0 interrupted iterations
+mixed ↓ [ 100% ] 1024/1024 VUs  30s  256.00 iters/s
+
+running (0m35.9s), 0976/1024 VUs, 129 complete and 0 interrupted iterations
+mixed ↓ [ 100% ] 1024/1024 VUs  30s  256.00 iters/s
+
+running (0m36.9s), 0976/1024 VUs, 129 complete and 0 interrupted iterations
+mixed ↓ [ 100% ] 1024/1024 VUs  30s  256.00 iters/s
+
+running (0m37.9s), 0976/1024 VUs, 129 complete and 0 interrupted iterations
+mixed ↓ [ 100% ] 1024/1024 VUs  30s  256.00 iters/s
+
+running (0m38.9s), 0976/1024 VUs, 129 complete and 0 interrupted iterations
+mixed ↓ [ 100% ] 1024/1024 VUs  30s  256.00 iters/s
+
+running (0m39.9s), 0976/1024 VUs, 129 complete and 0 interrupted iterations
+mixed ↓ [ 100% ] 1024/1024 VUs  30s  256.00 iters/s
+
+running (0m40.9s), 0976/1024 VUs, 129 complete and 0 interrupted iterations
+mixed ↓ [ 100% ] 1024/1024 VUs  30s  256.00 iters/s
+
+running (0m41.9s), 0976/1024 VUs, 129 complete and 0 interrupted iterations
+mixed ↓ [ 100% ] 1024/1024 VUs  30s  256.00 iters/s
+
+running (0m42.9s), 0976/1024 VUs, 129 complete and 0 interrupted iterations
+mixed ↓ [ 100% ] 1024/1024 VUs  30s  256.00 iters/s
+
+running (0m43.9s), 0976/1024 VUs, 129 complete and 0 interrupted iterations
+mixed ↓ [ 100% ] 1024/1024 VUs  30s  256.00 iters/s
+
+running (0m44.9s), 0976/1024 VUs, 129 complete and 0 interrupted iterations
+mixed ↓ [ 100% ] 1024/1024 VUs  30s  256.00 iters/s
+
+running (0m45.9s), 0976/1024 VUs, 129 complete and 0 interrupted iterations
+mixed ↓ [ 100% ] 1024/1024 VUs  30s  256.00 iters/s
+
+running (0m46.9s), 0976/1024 VUs, 129 complete and 0 interrupted iterations
+mixed ↓ [ 100% ] 1024/1024 VUs  30s  256.00 iters/s
+
+running (0m47.9s), 0976/1024 VUs, 129 complete and 0 interrupted iterations
+mixed ↓ [ 100% ] 1024/1024 VUs  30s  256.00 iters/s
+
+running (0m48.9s), 0976/1024 VUs, 129 complete and 0 interrupted iterations
+mixed ↓ [ 100% ] 1024/1024 VUs  30s  256.00 iters/s
+
+running (0m49.9s), 0976/1024 VUs, 129 complete and 0 interrupted iterations
+mixed ↓ [ 100% ] 1024/1024 VUs  30s  256.00 iters/s
+
+running (0m50.9s), 0976/1024 VUs, 129 complete and 0 interrupted iterations
+mixed ↓ [ 100% ] 1024/1024 VUs  30s  256.00 iters/s
+
+running (0m51.9s), 0976/1024 VUs, 129 complete and 0 interrupted iterations
+mixed ↓ [ 100% ] 1024/1024 VUs  30s  256.00 iters/s
+
+running (0m52.9s), 0976/1024 VUs, 129 complete and 0 interrupted iterations
+mixed ↓ [ 100% ] 1024/1024 VUs  30s  256.00 iters/s
+
+running (0m53.9s), 0976/1024 VUs, 129 complete and 0 interrupted iterations
+mixed ↓ [ 100% ] 1024/1024 VUs  30s  256.00 iters/s
+
+running (0m54.9s), 0976/1024 VUs, 129 complete and 0 interrupted iterations
+mixed ↓ [ 100% ] 1024/1024 VUs  30s  256.00 iters/s
+
+running (0m55.9s), 0976/1024 VUs, 129 complete and 0 interrupted iterations
+mixed ↓ [ 100% ] 1024/1024 VUs  30s  256.00 iters/s
+
+running (0m56.9s), 0976/1024 VUs, 129 complete and 0 interrupted iterations
+mixed ↓ [ 100% ] 1024/1024 VUs  30s  256.00 iters/s
+
+running (0m57.9s), 0976/1024 VUs, 129 complete and 0 interrupted iterations
+mixed ↓ [ 100% ] 1024/1024 VUs  30s  256.00 iters/s
+
+running (0m58.9s), 0976/1024 VUs, 129 complete and 0 interrupted iterations
+mixed ↓ [ 100% ] 1024/1024 VUs  30s  256.00 iters/s
+
+running (0m59.9s), 0976/1024 VUs, 129 complete and 0 interrupted iterations
+mixed ↓ [ 100% ] 1024/1024 VUs  30s  256.00 iters/s
+
+
+  █ THRESHOLDS 
+
+    http_req_duration
+    ✗ 'p(95)<500' p(95)=30.51s
+
+    http_req_failed
+    ✗ 'rate<0.01' rate=27.69%
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 1       0.016627/s
+    checks_succeeded...: 100.00% 1 out of 1
+    checks_failed......: 0.00%   0 out of 1
+
+    ✓ login succeeded
+
+    CUSTOM
+    app_time_ms....................: avg=4.07s     min=6.67ms    med=184.79ms  max=30.67s    p(90)=30.01s    p(95)=30.54s   
+    db_query_count.................: 400    6.650654/s
+    db_time_ms.....................: avg=25.05ms   min=2.81ms    med=19.68ms   max=139.92ms  p(90)=35.67ms   p(95)=78.87ms  
+    db_time_share_pct..............: avg=12.523701 min=0.009225  med=10.273319 max=45.987963 p(90)=26.898816 p(95)=31.588611
+    op_detail_app_ms...............: avg=10.16s    min=6.67ms    med=96.95ms   max=30.56s    p(90)=30.55s    p(95)=30.55s   
+    op_detail_db_ms................: avg=5.63ms    min=2.81ms    med=4.84ms    max=14.56ms   p(90)=8.02ms    p(95)=9.86ms   
+    op_detail_db_queries...........: 42     0.698319/s
+    op_detail_db_share_pct.........: avg=11.070382 min=0.009225  med=6.823446  max=32.987742 p(90)=27.055649 p(95)=32.650384
+    op_detail_http_ms..............: avg=10.26s    min=12.88ms   med=261.48ms  max=30.72s    p(90)=30.71s    p(95)=30.71s   
+    op_detail_requests.............: 21     0.349159/s
+    op_issue_app_ms................: avg=4.04s     min=66.5ms    med=153.52ms  max=30.39s    p(90)=23.94s    p(95)=29.91s   
+    op_issue_db_ms.................: avg=31.37ms   min=20.86ms   med=29.71ms   max=50.95ms   p(90)=39.18ms   p(95)=41.23ms  
+    op_issue_db_queries............: 161    2.676888/s
+    op_issue_db_share_pct..........: avg=17.379487 min=0.068595  med=17.327579 max=30.880763 p(90)=28.688111 p(95)=29.55777 
+    op_issue_http_ms...............: avg=4.11s     min=104.01ms  med=201.52ms  max=30.59s    p(90)=24.11s    p(95)=30.11s   
+    op_issue_requests..............: 23     0.382413/s
+    op_list_app_ms.................: avg=2.3s      min=98.25ms   med=222.47ms  max=30.67s    p(90)=413.81ms  p(95)=18.21s   
+    op_list_db_ms..................: avg=19.59ms   min=14.65ms   med=19.42ms   max=27.86ms   p(90)=23.53ms   p(95)=24.11ms  
+    op_list_db_queries.............: 87     1.446517/s
+    op_list_db_share_pct...........: avg=8.668303  min=0.048409  med=8.051406  max=17.968051 p(90)=16.160008 p(95)=17.474076
+    op_list_http_ms................: avg=2.43s     min=200.5ms   med=369.31ms  max=30.8s     p(90)=533.89ms  p(95)=18.37s   
+    op_list_requests...............: 29     0.482172/s
+    op_return_app_ms...............: avg=245.93ms  min=125.31ms  med=209.29ms  max=577.49ms  p(90)=338.88ms  p(95)=418.41ms 
+    op_return_db_ms................: avg=18.2ms    min=10.37ms   med=18.02ms   max=28.81ms   p(90)=26.04ms   p(95)=26.9ms   
+    op_return_db_queries...........: 90     1.496397/s
+    op_return_db_share_pct.........: avg=8.231241  min=3.123984  med=6.697485  max=16.654142 p(90)=13.613109 p(95)=14.646337
+    op_return_http_ms..............: avg=309.04ms  min=174.45ms  med=257.13ms  max=626.48ms  p(90)=405.11ms  p(95)=486.73ms 
+    op_return_requests.............: 15     0.2494/s
+    op_summary_app_ms..............: avg=313.47ms  min=161.17ms  med=275.26ms  max=457.35ms  p(90)=449.77ms  p(95)=453.56ms 
+    op_summary_db_ms...............: avg=129.79ms  min=120.73ms  med=125.79ms  max=139.92ms  p(90)=138.84ms  p(95)=139.38ms 
+    op_summary_db_queries..........: 20     0.332533/s
+    op_summary_db_share_pct........: avg=31.529719 min=20.885639 med=33.701598 max=45.987963 p(90)=41.532695 p(95)=43.760329
+    op_summary_http_ms.............: avg=522.17ms  min=375.64ms  med=494.47ms  max=656.83ms  p(90)=654.43ms  p(95)=655.63ms 
+    op_summary_requests............: 5      0.083133/s
+
+    HTTP
+    http_req_duration..............: avg=11.37s    min=12.88ms   med=375.41ms  max=30.8s     p(90)=30.36s    p(95)=30.51s   
+      { expected_response:true }...: avg=4.12s     min=12.88ms   med=275.04ms  max=30.8s     p(90)=30.18s    p(95)=30.71s   
+    http_req_failed................: 27.69% 36 out of 130
+    http_reqs......................: 130    2.161463/s
+
+    EXECUTION
+    dropped_iterations.............: 6575   109.320133/s
+    iteration_duration.............: avg=11.46s    min=13.78ms   med=376.79ms  max=30.81s    p(90)=30.36s    p(95)=30.52s   
+    iterations.....................: 129    2.144836/s
+    vus............................: 976    min=128       max=1024
+    vus_max........................: 1024   min=256       max=1024
+
+    NETWORK
+    data_received..................: 139 kB 2.3 kB/s
+    data_sent......................: 285 kB 4.7 kB/s
+
+
+
+
+running (1m00.1s), 0000/1024 VUs, 129 complete and 976 interrupted iterations
+mixed ✓ [ 100% ] 0976/1024 VUs  30s  256.00 iters/s
+time="2026-11-20T17:44:40-03:00" level=error msg="thresholds on metrics 'http_req_duration, http_req_failed' have been crossed"

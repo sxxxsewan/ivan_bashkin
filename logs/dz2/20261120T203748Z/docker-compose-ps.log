@@ -1,0 +1,2 @@
+NAME                    IMAGE         COMMAND                  SERVICE                 CREATED       STATUS                 PORTS
+ivan_bashkin_postgres   postgres:16   "docker-entrypoint.s…"   ivan_bashkin_postgres   2 hours ago   Up 2 hours (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp

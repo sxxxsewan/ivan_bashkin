@@ -1,0 +1,151 @@
+
+         /\      Grafana   /‾‾/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   ‾‾\ 
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/ 
+
+
+     execution: local
+        script: load/library.js
+        output: -
+
+     scenarios: (100.00%) 1 scenario, 256 max VUs, 1m0s max duration (incl. graceful stop):
+              * mixed: 64.00 iterations/s for 30s (maxVUs: 64-256, gracefulStop: 30s)
+
+
+running (0m01.0s), 000/064 VUs, 56 complete and 0 interrupted iterations
+mixed   [   3% ] 000/064 VUs  00.9s/30s  64.00 iters/s
+
+running (0m02.0s), 001/064 VUs, 119 complete and 0 interrupted iterations
+mixed   [   6% ] 001/064 VUs  01.9s/30s  64.00 iters/s
+
+running (0m03.0s), 001/064 VUs, 183 complete and 0 interrupted iterations
+mixed   [  10% ] 001/064 VUs  02.9s/30s  64.00 iters/s
+
+running (0m04.0s), 000/064 VUs, 248 complete and 0 interrupted iterations
+mixed   [  13% ] 000/064 VUs  03.9s/30s  64.00 iters/s
+
+running (0m05.0s), 008/064 VUs, 305 complete and 0 interrupted iterations
+mixed   [  16% ] 008/064 VUs  04.9s/30s  64.00 iters/s
+
+running (0m06.0s), 001/064 VUs, 375 complete and 0 interrupted iterations
+mixed   [  20% ] 001/064 VUs  05.9s/30s  64.00 iters/s
+
+running (0m07.0s), 001/064 VUs, 439 complete and 0 interrupted iterations
+mixed   [  23% ] 001/064 VUs  06.9s/30s  64.00 iters/s
+
+running (0m08.0s), 000/064 VUs, 504 complete and 0 interrupted iterations
+mixed   [  26% ] 000/064 VUs  07.9s/30s  64.00 iters/s
+
+running (0m09.0s), 000/064 VUs, 568 complete and 0 interrupted iterations
+mixed   [  30% ] 000/064 VUs  08.9s/30s  64.00 iters/s
+
+running (0m10.0s), 001/064 VUs, 631 complete and 0 interrupted iterations
+mixed   [  33% ] 001/064 VUs  09.9s/30s  64.00 iters/s
+
+running (0m11.0s), 001/064 VUs, 696 complete and 0 interrupted iterations
+mixed   [  36% ] 001/064 VUs  10.9s/30s  64.00 iters/s
+
+running (0m12.0s), 001/064 VUs, 760 complete and 0 interrupted iterations
+mixed   [  40% ] 001/064 VUs  11.9s/30s  64.00 iters/s
+
+running (0m13.0s), 002/064 VUs, 823 complete and 0 interrupted iterations
+mixed   [  43% ] 002/064 VUs  12.9s/30s  64.00 iters/s
+
+running (0m14.0s), 002/064 VUs, 887 complete and 0 interrupted iterations
+mixed   [  46% ] 002/064 VUs  13.9s/30s  64.00 iters/s
+
+running (0m15.0s), 000/064 VUs, 952 complete and 0 interrupted iterations
+mixed   [  50% ] 000/064 VUs  14.9s/30s  64.00 iters/s
+
+running (0m16.0s), 004/064 VUs, 1013 complete and 0 interrupted iterations
+mixed   [  53% ] 004/064 VUs  15.9s/30s  64.00 iters/s
+
+running (0m17.0s), 001/064 VUs, 1079 complete and 0 interrupted iterations
+mixed   [  56% ] 001/064 VUs  16.9s/30s  64.00 iters/s
+
+running (0m18.0s), 002/064 VUs, 1143 complete and 0 interrupted iterations
+mixed   [  60% ] 002/064 VUs  17.9s/30s  64.00 iters/s
+
+running (0m19.0s), 003/064 VUs, 1205 complete and 0 interrupted iterations
+mixed   [  63% ] 003/064 VUs  18.9s/30s  64.00 iters/s
+
+running (0m20.0s), 002/064 VUs, 1271 complete and 0 interrupted iterations
+mixed   [  66% ] 002/064 VUs  19.9s/30s  64.00 iters/s
+
+running (0m21.0s), 001/064 VUs, 1335 complete and 0 interrupted iterations
+mixed   [  70% ] 001/064 VUs  20.9s/30s  64.00 iters/s
+
+running (0m22.0s), 000/064 VUs, 1400 complete and 0 interrupted iterations
+mixed   [  73% ] 000/064 VUs  21.9s/30s  64.00 iters/s
+
+running (0m23.0s), 001/064 VUs, 1464 complete and 0 interrupted iterations
+mixed   [  76% ] 001/064 VUs  22.9s/30s  64.00 iters/s
+
+running (0m24.0s), 001/064 VUs, 1527 complete and 0 interrupted iterations
+mixed   [  80% ] 001/064 VUs  23.9s/30s  64.00 iters/s
+
+running (0m25.0s), 002/064 VUs, 1591 complete and 0 interrupted iterations
+mixed   [  83% ] 002/064 VUs  24.9s/30s  64.00 iters/s
+
+running (0m26.0s), 000/064 VUs, 1656 complete and 0 interrupted iterations
+mixed   [  86% ] 000/064 VUs  25.9s/30s  64.00 iters/s
+
+running (0m27.0s), 001/064 VUs, 1719 complete and 0 interrupted iterations
+mixed   [  90% ] 001/064 VUs  26.9s/30s  64.00 iters/s
+
+running (0m28.0s), 001/064 VUs, 1783 complete and 0 interrupted iterations
+mixed   [  93% ] 001/064 VUs  27.9s/30s  64.00 iters/s
+
+running (0m29.0s), 001/064 VUs, 1848 complete and 0 interrupted iterations
+mixed   [  96% ] 001/064 VUs  28.9s/30s  64.00 iters/s
+
+running (0m30.0s), 008/064 VUs, 1905 complete and 0 interrupted iterations
+mixed   [ 100% ] 008/064 VUs  29.9s/30s  64.00 iters/s
+
+
+  █ THRESHOLDS 
+
+    http_req_duration
+    ✓ 'p(95)<500' p(95)=112.99ms
+
+    http_req_failed
+    ✓ 'rate<0.01' rate=0.00%
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 1       0.033184/s
+    checks_succeeded...: 100.00% 1 out of 1
+    checks_failed......: 0.00%   0 out of 1
+
+    ✓ login succeeded
+
+    CUSTOM
+    app_time_ms....................: avg=7.48ms    min=3.26ms    med=6.63ms    max=27.16ms   p(90)=10.96ms   p(95)=11.72ms  
+    db_query_count.................: 7774   257.975219/s
+    db_time_ms.....................: avg=14.79ms   min=1.49ms    med=10.9ms    max=159.64ms  p(90)=15.4ms    p(95)=103.2ms  
+    db_time_share_pct..............: avg=51.272035 min=22.615132 med=54.427257 max=96.644758 p(90)=71.433683 p(95)=92.220777
+
+    HTTP
+    http_req_duration..............: avg=23.46ms   min=6ms       med=18.83ms   max=168.16ms  p(90)=26.93ms   p(95)=112.99ms 
+      { expected_response:true }...: avg=23.46ms   min=6ms       med=18.83ms   max=168.16ms  p(90)=26.93ms   p(95)=112.99ms 
+    http_req_failed................: 0.00%  0 out of 1922
+    http_reqs......................: 1922   63.780341/s
+
+    EXECUTION
+    iteration_duration.............: avg=23.95ms   min=6.56ms    med=19.36ms   max=168.69ms  p(90)=27.42ms   p(95)=113.58ms 
+    iterations.....................: 1921   63.747157/s
+    vus............................: 7      min=0         max=8 
+    vus_max........................: 64     min=64        max=64
+
+    NETWORK
+    data_received..................: 3.0 MB 99 kB/s
+    data_sent......................: 496 kB 17 kB/s
+
+
+
+
+running (0m30.1s), 000/064 VUs, 1921 complete and 0 interrupted iterations
+mixed ✓ [ 100% ] 000/064 VUs  30s  64.00 iters/s

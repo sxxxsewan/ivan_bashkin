@@ -1,0 +1,226 @@
+
+         /\      Grafana   /‾‾/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   ‾‾\ 
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/ 
+
+
+     execution: local
+        script: load/library.js
+        output: -
+
+     scenarios: (100.00%) 1 scenario, 512 max VUs, 1m0s max duration (incl. graceful stop):
+              * heavy: 128.00 iterations/s for 30s (maxVUs: 128-512, gracefulStop: 30s)
+
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+
+
+  █ THRESHOLDS 
+
+    http_req_duration
+    ✓ 'p(95)<500' p(95)=0s
+
+    http_req_failed
+    ✓ 'rate<0.01' rate=0.00%
+
+
+  █ TOTAL RESULTS 
+
+    HTTP
+    http_req_duration...: avg=0s min=0s med=0s max=0s p(90)=0s p(95)=0s
+    http_req_failed.....: 0.00% 0 out of 0
+
+    EXECUTION
+    vus.................: 0     min=0                  max=0  
+    vus_max.............: 128   min=128                max=128
+
+    NETWORK
+    data_received.......: 0 B   0 B/s
+    data_sent...........: 189 B 3.1499326186363796 B/s
+
+
+
+
+Run     [ 100% ] setup()
+heavy   [   0% ]
+time="2026-11-20T17:57:27-03:00" level=error msg="setup() execution timed out after 60 seconds" hint="You can increase the time limit via the setupTimeout option"

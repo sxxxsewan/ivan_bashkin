@@ -1,0 +1,237 @@
+BEGIN
+                                                    QUERY PLAN                                                     
+-------------------------------------------------------------------------------------------------------------------
+ Aggregate  (cost=614.75..614.76 rows=1 width=8) (actual time=2.632..2.635 rows=1 loops=1)
+   Buffers: shared hit=221
+   ->  Seq Scan on book_copies  (cost=0.00..596.00 rows=7500 width=4) (actual time=0.005..2.317 rows=7500 loops=1)
+         Filter: ((status)::text = 'issued'::text)
+         Rows Removed by Filter: 22500
+         Buffers: shared hit=221
+ Planning:
+   Buffers: shared hit=66
+ Planning Time: 0.199 ms
+ Execution Time: 2.668 ms
+(10 rows)
+
+                                                  QUERY PLAN                                                  
+--------------------------------------------------------------------------------------------------------------
+ Aggregate  (cost=1836.84..1836.85 rows=1 width=8) (actual time=4.647..4.648 rows=1 loops=1)
+   Buffers: shared hit=694
+   ->  Seq Scan on loans  (cost=0.00..1819.00 rows=7137 width=4) (actual time=0.005..4.484 rows=3750 loops=1)
+         Filter: ((return_date IS NULL) AND (due_date < now()))
+         Rows Removed by Filter: 71250
+         Buffers: shared hit=694
+ Planning:
+   Buffers: shared hit=25
+ Planning Time: 0.157 ms
+ Execution Time: 4.666 ms
+(10 rows)
+
+                                                                    QUERY PLAN                                                                     
+---------------------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=3761.96..3761.98 rows=10 width=43) (actual time=55.499..55.504 rows=10 loops=1)
+   Buffers: shared hit=1033
+   ->  Sort  (cost=3761.96..3786.96 rows=10000 width=43) (actual time=55.497..55.501 rows=10 loops=1)
+         Sort Key: (count(loans.id)) DESC, books.id
+         Sort Method: top-N heapsort  Memory: 26kB
+         Buffers: shared hit=1033
+         ->  HashAggregate  (cost=3445.86..3545.86 rows=10000 width=43) (actual time=52.325..53.909 rows=10000 loops=1)
+               Group Key: books.id
+               Batches: 1  Memory Usage: 1425kB
+               Buffers: shared hit=1027
+               ->  Hash Join  (cost=1233.00..3070.86 rows=75000 width=39) (actual time=8.459..41.122 rows=75000 loops=1)
+                     Hash Cond: (book_copies.book_id = books.id)
+                     Buffers: shared hit=1027
+                     ->  Hash Join  (cost=896.00..2536.90 rows=75000 width=8) (actual time=5.951..25.676 rows=75000 loops=1)
+                           Hash Cond: (loans.copy_id = book_copies.id)
+                           Buffers: shared hit=915
+                           ->  Seq Scan on loans  (cost=0.00..1444.00 rows=75000 width=8) (actual time=0.003..4.512 rows=75000 loops=1)
+                                 Buffers: shared hit=694
+                           ->  Hash  (cost=521.00..521.00 rows=30000 width=8) (actual time=5.823..5.824 rows=30000 loops=1)
+                                 Buckets: 32768  Batches: 1  Memory Usage: 1428kB
+                                 Buffers: shared hit=221
+                                 ->  Seq Scan on book_copies  (cost=0.00..521.00 rows=30000 width=8) (actual time=0.003..2.279 rows=30000 loops=1)
+                                       Buffers: shared hit=221
+                     ->  Hash  (cost=212.00..212.00 rows=10000 width=35) (actual time=2.434..2.434 rows=10000 loops=1)
+                           Buckets: 16384  Batches: 1  Memory Usage: 783kB
+                           Buffers: shared hit=112
+                           ->  Seq Scan on books  (cost=0.00..212.00 rows=10000 width=35) (actual time=0.007..0.910 rows=10000 loops=1)
+                                 Buffers: shared hit=112
+ Planning:
+   Buffers: shared hit=105
+ Planning Time: 0.557 ms
+ Execution Time: 55.990 ms
+(32 rows)
+
+                                                  QUERY PLAN                                                  
+--------------------------------------------------------------------------------------------------------------
+ Aggregate  (cost=1462.78..1462.79 rows=1 width=8) (actual time=4.377..4.378 rows=1 loops=1)
+   Buffers: shared hit=694
+   ->  Seq Scan on loans  (cost=0.00..1444.00 rows=7512 width=4) (actual time=0.007..4.050 rows=7500 loops=1)
+         Filter: (return_date IS NULL)
+         Rows Removed by Filter: 67500
+         Buffers: shared hit=694
+ Planning Time: 0.043 ms
+ Execution Time: 4.393 ms
+(8 rows)
+
+                                                           QUERY PLAN                                                            
+---------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=0.29..1.00 rows=20 width=40) (actual time=0.006..0.010 rows=20 loops=1)
+   Buffers: shared hit=3
+   ->  Index Scan using loans_pkey on loans  (cost=0.29..2650.29 rows=75000 width=40) (actual time=0.005..0.008 rows=20 loops=1)
+         Buffers: shared hit=3
+ Planning:
+   Buffers: shared hit=11 dirtied=3
+ Planning Time: 0.107 ms
+ Execution Time: 0.017 ms
+(8 rows)
+
+                                                                       QUERY PLAN                                                                        
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+ Nested Loop Left Join  (cost=1.15..25.24 rows=1 width=152) (actual time=0.012..0.014 rows=1 loops=1)
+   Buffers: shared hit=12
+   ->  Nested Loop Left Join  (cost=0.86..24.92 rows=1 width=95) (actual time=0.010..0.011 rows=1 loops=1)
+         Buffers: shared hit=9
+         ->  Nested Loop Left Join  (cost=0.57..16.61 rows=1 width=66) (actual time=0.008..0.009 rows=1 loops=1)
+               Buffers: shared hit=6
+               ->  Index Scan using loans_pkey on loans  (cost=0.29..8.31 rows=1 width=40) (actual time=0.004..0.004 rows=1 loops=1)
+                     Index Cond: (id = 1)
+                     Buffers: shared hit=3
+               ->  Index Scan using readers_pkey on readers readers_1  (cost=0.28..8.30 rows=1 width=26) (actual time=0.002..0.002 rows=1 loops=1)
+                     Index Cond: (id = loans.reader_id)
+                     Buffers: shared hit=3
+         ->  Index Scan using book_copies_pkey on book_copies book_copies_1  (cost=0.29..8.30 rows=1 width=29) (actual time=0.002..0.002 rows=1 loops=1)
+               Index Cond: (id = loans.copy_id)
+               Buffers: shared hit=3
+   ->  Index Scan using books_pkey on books books_1  (cost=0.29..0.32 rows=1 width=57) (actual time=0.002..0.002 rows=1 loops=1)
+         Index Cond: (id = book_copies_1.book_id)
+         Buffers: shared hit=3
+ Planning:
+   Buffers: shared hit=60 dirtied=2
+ Planning Time: 0.356 ms
+ Execution Time: 0.031 ms
+(22 rows)
+
+                                            QUERY PLAN                                            
+--------------------------------------------------------------------------------------------------
+ Seq Scan on users  (cost=0.00..11.12 rows=1 width=816) (actual time=0.004..0.005 rows=1 loops=1)
+   Filter: ((username)::text = 'admin'::text)
+   Buffers: shared hit=1
+ Planning:
+   Buffers: shared hit=24
+ Planning Time: 0.076 ms
+ Execution Time: 0.014 ms
+(7 rows)
+
+COMMIT
+BEGIN
+                                                     QUERY PLAN                                                     
+--------------------------------------------------------------------------------------------------------------------
+ Index Scan using users_pkey on users  (cost=0.14..8.16 rows=1 width=816) (actual time=0.006..0.007 rows=1 loops=1)
+   Index Cond: (id = 1)
+   Buffers: shared hit=2
+ Planning Time: 0.025 ms
+ Execution Time: 0.013 ms
+(5 rows)
+
+                                                      QUERY PLAN                                                       
+-----------------------------------------------------------------------------------------------------------------------
+ Index Scan using readers_pkey on readers  (cost=0.28..8.30 rows=1 width=34) (actual time=0.005..0.006 rows=1 loops=1)
+   Index Cond: (id = 1)
+   Buffers: shared hit=3
+ Planning:
+   Buffers: shared hit=3
+ Planning Time: 0.057 ms
+ Execution Time: 0.015 ms
+(7 rows)
+
+                                                          QUERY PLAN                                                           
+-------------------------------------------------------------------------------------------------------------------------------
+ Index Scan using book_copies_pkey on book_copies  (cost=0.29..8.30 rows=1 width=29) (actual time=0.009..0.010 rows=1 loops=1)
+   Index Cond: (id = 1)
+   Buffers: shared hit=3
+ Planning Time: 0.037 ms
+ Execution Time: 0.017 ms
+(5 rows)
+
+                                               QUERY PLAN                                               
+--------------------------------------------------------------------------------------------------------
+ Limit  (cost=0.00..1003.25 rows=1 width=4) (actual time=4.223..4.224 rows=0 loops=1)
+   Buffers: shared hit=694
+   ->  Seq Scan on loans  (cost=0.00..2006.50 rows=2 width=4) (actual time=4.222..4.223 rows=0 loops=1)
+         Filter: ((return_date IS NULL) AND (reader_id = 1) AND (due_date < now()))
+         Rows Removed by Filter: 75000
+         Buffers: shared hit=694
+ Planning Time: 0.039 ms
+ Execution Time: 4.233 ms
+(8 rows)
+
+                                                             QUERY PLAN                                                              
+-------------------------------------------------------------------------------------------------------------------------------------
+ Update on book_copies  (cost=0.29..8.30 rows=0 width=0) (actual time=0.086..0.087 rows=0 loops=1)
+   Buffers: shared hit=20 dirtied=4
+   ->  Index Scan using book_copies_pkey on book_copies  (cost=0.29..8.30 rows=1 width=64) (actual time=0.005..0.006 rows=1 loops=1)
+         Index Cond: (id = 1)
+         Buffers: shared hit=3
+ Planning Time: 0.059 ms
+ Execution Time: 0.147 ms
+(7 rows)
+
+                                         QUERY PLAN                                          
+---------------------------------------------------------------------------------------------
+ Insert on loans  (cost=0.00..0.02 rows=0 width=0) (actual time=0.077..0.078 rows=0 loops=1)
+   Buffers: shared hit=20 dirtied=3
+   ->  Result  (cost=0.00..0.02 rows=1 width=52) (actual time=0.041..0.041 rows=1 loops=1)
+         Buffers: shared hit=13
+ Planning:
+   Buffers: shared hit=6
+ Planning Time: 0.031 ms
+ Trigger for constraint loans_reader_id_fkey: time=0.108 calls=1
+ Trigger for constraint loans_copy_id_fkey: time=0.042 calls=1
+ Execution Time: 0.236 ms
+(10 rows)
+
+                                                    QUERY PLAN                                                     
+-------------------------------------------------------------------------------------------------------------------
+ Index Scan using loans_pkey on loans  (cost=0.29..8.31 rows=1 width=40) (actual time=0.005..0.005 rows=1 loops=1)
+   Index Cond: (id = 1)
+   Buffers: shared hit=3
+ Planning Time: 0.024 ms
+ Execution Time: 0.010 ms
+(5 rows)
+
+ROLLBACK
+BEGIN
+                                                    QUERY PLAN                                                     
+-------------------------------------------------------------------------------------------------------------------
+ Index Scan using loans_pkey on loans  (cost=0.29..8.31 rows=1 width=40) (actual time=0.008..0.009 rows=1 loops=1)
+   Index Cond: (id = 4)
+   Buffers: shared hit=3
+ Planning Time: 0.031 ms
+ Execution Time: 0.016 ms
+(5 rows)
+
+                                                       QUERY PLAN                                                        
+-------------------------------------------------------------------------------------------------------------------------
+ Update on loans  (cost=0.29..8.31 rows=0 width=0) (actual time=0.044..0.044 rows=0 loops=1)
+   Buffers: shared hit=11 dirtied=2
+   ->  Index Scan using loans_pkey on loans  (cost=0.29..8.31 rows=1 width=30) (actual time=0.004..0.005 rows=1 loops=1)
+         Index Cond: (id = 4)
+         Buffers: shared hit=3
+ Planning Time: 0.028 ms
+ Execution Time: 0.062 ms
+(7 rows)
+
+                                                             QUERY PLAN                                                              
+-------------------------------------------------------------------------------------------------------------------------------------
+ Update on book_copies  (cost=0.29..8.30 rows=0 width=0) (actual time=0.022..0.022 rows=0 loops=1)
+   Buffers: shared hit=10
+   ->  Index Scan using book_copies_pkey on book_copies  (cost=0.29..8.30 rows=1 width=64) (actual time=0.010..0.011 rows=1 loops=1)
+         Index Cond: (id = 4)
+         Buffers: shared hit=3
+ Planning Time: 0.024 ms
+ Execution Time: 0.029 ms
+(7 rows)
+
+ROLLBACK

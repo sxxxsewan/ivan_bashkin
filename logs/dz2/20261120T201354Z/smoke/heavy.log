@@ -1,0 +1,70 @@
+
+         /\      Grafana   /‾‾/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   ‾‾\ 
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/ 
+
+
+     execution: local
+        script: load/library.js
+        output: -
+
+     scenarios: (100.00%) 1 scenario, 20 max VUs, 33s max duration (incl. graceful stop):
+              * heavy: 1.00 iterations/s for 3s (maxVUs: 10-20, gracefulStop: 30s)
+
+
+running (01.0s), 00/10 VUs, 1 complete and 0 interrupted iterations
+heavy   [  30% ] 00/10 VUs  0.9s/3s  1.00 iters/s
+
+running (02.0s), 00/10 VUs, 2 complete and 0 interrupted iterations
+heavy   [  63% ] 00/10 VUs  1.9s/3s  1.00 iters/s
+
+running (03.0s), 00/10 VUs, 3 complete and 0 interrupted iterations
+heavy   [  96% ] 00/10 VUs  2.9s/3s  1.00 iters/s
+
+
+  █ THRESHOLDS 
+
+    http_req_duration
+    ✓ 'p(95)<500' p(95)=137.49ms
+
+    http_req_failed
+    ✓ 'rate<0.01' rate=0.00%
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 1       0.322118/s
+    checks_succeeded...: 100.00% 1 out of 1
+    checks_failed......: 0.00%   0 out of 1
+
+    ✓ login succeeded
+
+    CUSTOM
+    app_time_ms....................: avg=7.51ms    min=6.08ms    med=6.56ms   max=9.89ms    p(90)=9.22ms    p(95)=9.56ms   
+    db_query_count.................: 12     3.865422/s
+    db_time_ms.....................: avg=114.22ms  min=93.29ms   med=117.45ms max=131.93ms  p(90)=129.03ms  p(95)=130.48ms 
+    db_time_share_pct..............: avg=93.581368 min=90.410428 med=95.07447 max=95.259206 p(90)=95.222259 p(95)=95.240732
+
+    HTTP
+    http_req_duration..............: avg=117.92ms  min=102.08ms  med=114.92ms max=139.75ms  p(90)=135.22ms  p(95)=137.49ms 
+      { expected_response:true }...: avg=117.92ms  min=102.08ms  med=114.92ms max=139.75ms  p(90)=135.22ms  p(95)=137.49ms 
+    http_req_failed................: 0.00%  0 out of 4
+    http_reqs......................: 4      1.288474/s
+
+    EXECUTION
+    iteration_duration.............: avg=124.15ms  min=106.15ms  med=125.56ms max=140.74ms  p(90)=137.7ms   p(95)=139.22ms 
+    iterations.....................: 3      0.966355/s
+    vus............................: 0      min=0      max=0 
+    vus_max........................: 10     min=10     max=10
+
+    NETWORK
+    data_received..................: 3.5 kB 1.1 kB/s
+    data_sent......................: 870 B  280 B/s
+
+
+
+
+running (03.1s), 00/10 VUs, 3 complete and 0 interrupted iterations
+heavy ✓ [ 100% ] 00/10 VUs  3s  1.00 iters/s

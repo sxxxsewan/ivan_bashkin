@@ -1,0 +1,1 @@
+No duplicate active copy assignments (query returned zero rows).
